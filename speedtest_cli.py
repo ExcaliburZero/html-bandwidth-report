@@ -740,7 +740,7 @@ def speedtest():
         filename = args.csv
         file_exists = os.path.isfile(filename)
         try:
-            csvfile = open(filename, 'ab+')
+            csvfile = open(filename, 'a+')
             try:
 
                     headers = ['Test server', 'Date/Time', 'Latency (ms)',
