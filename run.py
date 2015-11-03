@@ -3,16 +3,15 @@ from subprocess import Popen, PIPE
 import time
 
 # Start the server
-#server_terminal = Popen("python -m SimpleHTTPServer 8080", shell=True, stdin=PIPE, stdout=PIPE)
-server_terminal = Popen("python3 -m http.server 8080", shell=True, stdin=PIPE, stdout=PIPE)
+Popen("python3 -m http.server 8080", shell=True, stdin=PIPE, stdout=PIPE)
 
-# Run the get speed command evey x minutes y times
-x = 5
-y = 120
+# Run the get internet speed command evey x minutes y times
+READING_INTERVAL = 5
+NUMBER_OF_READINGS = 120
 i = 0
-while i < y:
-	#Popen("python speedtest_cli.py --csv bandwidth_report.csv", shell=True, stdin=PIPE, stdout=PIPE)
-	Popen("python3 speedtest_cli.py --csv bandwidth_report.csv", shell=True, stdin=PIPE, stdout=PIPE)
-	print("Got time: " + str(x * (i + 1)))
-	time.sleep(x * 60);
+while i < NUMBER_OF_READINGS:
+	Popen("python3 speedtest_cli.py --csv bandwidth_report.csv", \
+		shell=True, stdin=PIPE, stdout=PIPE)
+	print "Got time: " + str(READING_INTERVAL * (i + 1))
+	time.sleep(READING_INTERVAL * 60)
 	i = i + 1
